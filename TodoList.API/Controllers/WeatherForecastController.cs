@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace TodoList.API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("base")]  
 public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
@@ -28,5 +28,23 @@ public class WeatherForecastController : ControllerBase
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         })
         .ToArray();
+    }
+
+    [HttpPost("get-current")]
+    public WeatherForecast GetCurrentTest()
+    {
+        var aaa = new WeatherForecast();
+
+        aaa.TemperatureC = 21;
+
+        return aaa;
+    }
+
+    [HttpDelete("delete-current")]
+    public IActionResult DeleteCurrentTest()
+    {
+        Console.WriteLine("Unlucky delete");
+
+        return Ok();
     }
 }
